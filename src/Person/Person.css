@@ -1,0 +1,11 @@
+.Person{
+    width: 50%;
+    margin: 1% auto;
+    border: 1px solid black;
+    box-shadow: 3px 3px 3px grey;
+    padding: 4%;
+    text-align: center;
+}
+input{
+    width: 50%;
+}
