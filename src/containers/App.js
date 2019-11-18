@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
-import Person from './Person/Person';
+import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
 //let persons = null;
+
+
+
 class App extends Component {
   state = {
     persons: [
@@ -9,12 +13,13 @@ class App extends Component {
       {id: '2', name: 'José', age: '52'},
       {id: '3', name: 'Mariza', age: '54'}
     ],
-    switchPressed: false,
+    switchPressed: false
   }
   switchButtonState = () =>{
     this.setState({
-        switchPressed: !this.switchPressed
+        switchPressed: !this.state.switchPressed
     });
+    console.log(this.state.switchPressed);
   }
   deletePerson = (personIndex) =>{
     // const personsDeleted = this.state.persons.slice();
@@ -35,35 +40,28 @@ class App extends Component {
     
     this.setState({ persons: personsChanged });
   }
- 
   render() {
     let persons= null;
     if(this.state.switchPressed){
       persons=(
         <div>
-          {this.state.persons.map((person, index) =>{
-            return <Person 
-                      doubleClick = {() => this.deletePerson(index)} 
-                      name = {person.name} 
-                      age ={person.age} 
-                      key = {person.id}
-                      updated = {(event) => this.updateName(event, person.id)}
-                    /> 
-          })}
+          <Persons persons = {this.state.persons}
+                  delete = {this.deletePerson}
+                  update = {this.updateName}/>
         </div>
       );
     }
+
     return (
       <div className = 'App'>
-        <h1>Chave de Quebra!</h1>
-        <button onClick={this.switchButtonState} >Press</button>
+        <Cockpit persons = {this.state.persons} 
+                pressed = {this.state.switchPressed} 
+                stateOfButton = {this.switchButtonState} />
         {persons}        
       </div>
     );
+    
   }
 }
 
 export default App;
-{/* <Person name = {this.state.persons[0].name} age ={this.state.persons[0].age} updated={this.updateName} />
-                  <Person name = {this.state.persons[1].name} age ={this.state.persons[1].age} click={this.switchName.bind(this,'Monstraaoo')} />
-                  <Person name = {this.state.persons[2].name} age ={this.state.persons[2].age} /> */}

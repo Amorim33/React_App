@@ -1,0 +1,11 @@
+.red{
+    color: rgb(200, 0, 0);
+}
+  
+.italic{
+    font-style: italic; 
+}
+  
+.bold{
+    font-weight: bold;
+}
